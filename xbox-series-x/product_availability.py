@@ -1,9 +1,11 @@
 import requests
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as soup
+import argparse
 
 # Local imports
 from urls import gamestop, bestbuy, amazon
+from utils import send_email
 
 
 def product_checker(url: str, retailer: str):
@@ -51,15 +53,29 @@ def product_checker(url: str, retailer: str):
     product_available = identifier not in str_element
 
     if product_available:
-        print(f'Product is available at {retailer}')
+        message = f'Product is available at {retailer}'
     else:
-        print(f'Product is NOT available at {retailer}')
+        message = f'Product is NOT available at {retailer}'
 
+    return message
+
+
+# Handling command line arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('-r', '--receiver-email', help="Receiver's Email")
+args = parser.parse_args()
 
 def main():
-    product_checker(gamestop, 'gamestop')
-    product_checker(amazon, 'amazon')
-    product_checker(bestbuy, 'bestbuy')
+    message1 = product_checker(gamestop, 'gamestop')
+    message2 = product_checker(amazon, 'amazon')
+    message3 = product_checker(bestbuy, 'bestbuy')
+    final_message = f'{message1}\n{message2}\n{message3}'
+
+    send_email(
+        args.receiver_email,
+        subject='Xbox Series X Scrapper',
+        message=final_message,
+    )
 
 if __name__ == "__main__":
     main()

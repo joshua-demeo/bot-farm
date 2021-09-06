@@ -2,5 +2,4 @@
 .vscode/
 __pycache__/
 local_secrets.py
-xbox-series-x/urls.py
 xbox-series-x/prototype.ipynb

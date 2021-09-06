@@ -71,11 +71,13 @@ def main():
     message3 = product_checker(BESTBUY, 'bestbuy')
     final_message = f'{message1}\n{message2}\n{message3}'
 
-    send_email(
-        args.receiver_email,
-        subject='Xbox Series X Scrapper',
-        message=final_message,
-    )
+    # Send email if one is passed
+    if args.receiver_email:
+        send_email(
+            args.receiver_email,
+            subject='Xbox Series X Scrapper',
+            message=final_message,
+        )
 
 if __name__ == "__main__":
     main()

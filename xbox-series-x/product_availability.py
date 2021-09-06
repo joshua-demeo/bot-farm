@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup as soup
 import argparse
 
 # Local imports
-from urls import gamestop, bestbuy, amazon
+from local_secrets import GAMESTOP, BESTBUY, AMAZON
 from utils import send_email
 
 
@@ -66,9 +66,9 @@ parser.add_argument('-r', '--receiver-email', help="Receiver's Email")
 args = parser.parse_args()
 
 def main():
-    message1 = product_checker(gamestop, 'gamestop')
-    message2 = product_checker(amazon, 'amazon')
-    message3 = product_checker(bestbuy, 'bestbuy')
+    message1 = product_checker(GAMESTOP, 'gamestop')
+    message2 = product_checker(AMAZON, 'amazon')
+    message3 = product_checker(BESTBUY, 'bestbuy')
     final_message = f'{message1}\n{message2}\n{message3}'
 
     send_email(

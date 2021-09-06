@@ -1,0 +1,5 @@
+.DS_Store
+.vscode/
+__pycache__/
+xbox-series-x/urls.py
+xbox-series-x/prototype.ipynb

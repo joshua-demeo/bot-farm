@@ -70,6 +70,7 @@ def main():
     message2 = product_checker(AMAZON, 'amazon')
     message3 = product_checker(BESTBUY, 'bestbuy')
     final_message = f'{message1}\n{message2}\n{message3}'
+    print(final_message)
 
     # Send email if one is passed
     if args.receiver_email:
